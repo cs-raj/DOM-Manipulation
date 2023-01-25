@@ -1,123 +1,88 @@
 /*
-    * First building the timer componenet in app.js
-    * Need two variables 
-    * 1 Seconds
-    * 1 Minutes
-    * Timer : MM:SS
-    * 3 Buttons 'start', 'stop', 'reset'
-    * If SS%60==0 then MM++
-    * Use interval of one second to increment once the timer starts
-    * Keep Both variable global for the timer
+    * both the timer and counter will be part of homeClock
+    * Creating the form 
+    * Radio Button Group name selectClockFunction
+    * Two Buttons timer and counter
+    * 
 */
 
-//Addign the link for the css file
-var head = document.getElementsByTagName('HEAD')[0];
-var link = document.createElement('link');
-// set the attributes for link element
-link.rel = 'stylesheet';
-     
-link.type = 'text/css';
-link.href = '../style/counter.css';
-head.appendChild(link);
-
-
-let second = 0;
-let minute = 0;
-let intervalId = 0; // This will store setInterval Id used to stop the timer
-//Getting the id of the element to be updated
-
-//Start timer function
-function tc(){
-    const timerClock = document.querySelector('.timerClock');
-    console.log(timerClock);
-    second = second+1;
-    timerClock.innerText = `Timer : ${minute} : ${second}`;
-    if(second%60===0){
-        second = 0;
-        minute = minute + 1;
-        timerClock.innerText = `Timer : ${minute} : ${second}`;
+/*
+ * home 
+ * form
+ * Timer Button
+ * Counter Button
+ * Submit Button
+*/
+const root = document.createElement('div');
+root.classList.add('root');
+//root.appendChild(homeClockContainer);
+const timerCheckFun = () =>{
+    let tr = document.querySelector('.counterContainer');
+    console.log(tr);
+    if(tr!==null)
+    {
+        root.removeChild(tr);
     }
+
+    root.appendChild(timer());
+    console.log("Timer is Checked");
 }
 
-const startTimerFun = () =>{
-    intervalId = setInterval(tc,1000);
+const counterCheckFun = () =>{
+    let tr = document.querySelector('.timerContainer');
+    console.log(tr);
+    if(tr!==null)
+    {
+        root.removeChild(tr);
+    }
+
+    root.appendChild(createCounterFromScratch());
+    console.log("Timer is Checked");
+    console.log("Counter is Checked");
 }
+const homeClock = () =>{
+    //Creating the element
+    //const root = document.createElement('div');
+    const homeClockContainer = document.createElement('div');
+    const homeForm = document.createElement('form');
+    const buttonGroup = document.createElement('div');
+    const timerButton = document.createElement('input');
+    const counterButton = document.createElement('input');
+    const timerLabel = document.createElement('label');
+    const counterLabel = document.createElement('label');
+    //Assigning Id and classes
+    timerButton.id = 'timer';
+    counterButton.id = 'counter';
+    timerButton.type = 'radio';
+    counterButton.type = 'radio';
+    timerButton.name = 'switchType';
+    counterButton.name = 'switchType';
+    timerButton.value = 'timer';
+    counterButton.value = 'counter';
+    timerLabel.for = 'timer';
+    counterLabel.for = 'counter';
+    timerLabel.innerText = "Timer";
+    counterLabel.innerText = "Counter";
+    buttonGroup.classList.add('buttonGroup'); //To house the buttons
+    homeForm.name = 'switchForm';
+    homeForm.action = '';
+    homeForm.method = "GET";
+    homeClockContainer.classList.add('homeClockContainer');
+    //root.classList.add('root');
 
-//To Stop the timer
-const stopTimerFun = () =>{
-    clearInterval(intervalId);
-}
-
-//Resetting the Timer
-const resetTimerFun = () =>{
-    clearInterval(intervalId); //Stopping the timer
-    //Setting it to zero
-    second = 0;
-    minute = 0;
-    const timerClock = document.querySelector('.timerClock');
-    timerClock.innerText = `Timer : ${minute} : ${second}`;
-}
-/*
-    * Creating the elements
-    * Assigning the inner html
-    * Adding the buttons
-    * appending at appropriate places
-    * Adding functionality to the buttons
-    * Adding css for the page
-*/
-/*
-    * Structure
-    * Root
-    *   timerContainer
-    *   header
-    *   Actual Timer MM:SS
-    *   button div
-    *       start
-    *       stop
-    *       reset
-*/
-const timer = () =>{
-    const root = document.createElement('div');
-    const timerContainer = document.createElement('div');
-    const timerHeader = document.createElement('div');
-    const timerClock = document.createElement('div');
-    const timerButton = document.createElement('div');
-    const startTimer = document.createElement('button');
-    const stopTimer = document.createElement('button');
-    const resetTimer = document.createElement('button');
-
-    //Adding class and id to element
-    root.id = 'root';
-    startTimer.id = 'start';
-    stopTimer.id = 'stop';
-    resetTimer.id = 'reset';
-    timerContainer.classList.add('timerContainer');
-    timerHeader.classList.add('timerHeader');
-    timerClock.classList.add('timerClock');
-    timerButton.classList.add('timerButton');
-
-    //Adding the inner html
-    timerHeader.innerText = "Timer MM : SS";
-    startTimer.innerText = "Start";
-    stopTimer.innerText = "Stop";
-    resetTimer.innerText = "Reset";
-    timerClock.innerText = `Timer : ${minute} : ${second}`;
-
-    //Adding element to one another
+    //Adding the elements to the body
     document.body.appendChild(root);
-    root.appendChild(timerContainer);
-    timerContainer.appendChild(timerHeader);
-    timerContainer.appendChild(timerClock);
-    timerContainer.appendChild(timerButton);
-    timerButton.appendChild(startTimer);
-    timerButton.appendChild(stopTimer);
-    timerButton.appendChild(resetTimer);
-
-    //Adding functionality to buttons
-    startTimer.addEventListener('click',startTimerFun,{once:true});
-    stopTimer.addEventListener('click',stopTimerFun);
-    resetTimer.addEventListener('click',resetTimerFun);
+    homeClockContainer.appendChild(homeForm);
+    homeForm.appendChild(buttonGroup);
+    buttonGroup.appendChild(timerButton);
+    buttonGroup.appendChild(timerLabel);
+    buttonGroup.appendChild(counterButton);
+    buttonGroup.appendChild(counterLabel);
+    // root.appendChild(homeClockContainer);
+    timerButton.addEventListener('click',timerCheckFun,{once:true});
+    counterButton.addEventListener('click',counterCheckFun,{once:true});
+    // root.removeChild(homeClockContainer);
+    return homeClockContainer;
 }
-
-//Calling to start
-timer();
+console.log(homeClock());
+root.appendChild(homeClock());
