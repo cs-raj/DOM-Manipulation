@@ -10,6 +10,17 @@
     * Keep Both variable global for the timer
 */
 
+//Addign the link for the css file
+var head = document.getElementsByTagName('HEAD')[0];
+var link = document.createElement('link');
+// set the attributes for link element
+link.rel = 'stylesheet';
+     
+link.type = 'text/css';
+link.href = '../style/counter.css';
+head.appendChild(link);
+
+
 let second = 0;
 let minute = 0;
 let intervalId = 0; // This will store setInterval Id used to stop the timer
@@ -103,7 +114,7 @@ const timer = () =>{
     timerButton.appendChild(resetTimer);
 
     //Adding functionality to buttons
-    startTimer.addEventListener('click',startTimerFun);
+    startTimer.addEventListener('click',startTimerFun,{once:true});
     stopTimer.addEventListener('click',stopTimerFun);
     resetTimer.addEventListener('click',resetTimerFun);
 }
