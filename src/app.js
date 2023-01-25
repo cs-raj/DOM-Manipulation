@@ -12,7 +12,40 @@
 
 let second = 0;
 let minute = 0;
+let intervalId = 0; // This will store setInterval Id used to stop the timer
+//Getting the id of the element to be updated
 
+//Start timer function
+function tc(){
+    const timerClock = document.querySelector('.timerClock');
+    console.log(timerClock);
+    second = second+1;
+    timerClock.innerText = `Timer : ${minute} : ${second}`;
+    if(second%60===0){
+        second = 0;
+        minute = minute + 1;
+        timerClock.innerText = `Timer : ${minute} : ${second}`;
+    }
+}
+
+const startTimerFun = () =>{
+    intervalId = setInterval(tc,1000);
+}
+
+//To Stop the timer
+const stopTimerFun = () =>{
+    clearInterval(intervalId);
+}
+
+//Resetting the Timer
+const resetTimerFun = () =>{
+    clearInterval(intervalId); //Stopping the timer
+    //Setting it to zero
+    second = 0;
+    minute = 0;
+    const timerClock = document.querySelector('.timerClock');
+    timerClock.innerText = `Timer : ${minute} : ${second}`;
+}
 /*
     * Creating the elements
     * Assigning the inner html
@@ -56,7 +89,7 @@ const timer = () =>{
     timerHeader.innerText = "Timer MM : SS";
     startTimer.innerText = "Start";
     stopTimer.innerText = "Stop";
-    resetTimer.innerText = "reset";
+    resetTimer.innerText = "Reset";
     timerClock.innerText = `Timer : ${minute} : ${second}`;
 
     //Adding element to one another
@@ -68,6 +101,11 @@ const timer = () =>{
     timerButton.appendChild(startTimer);
     timerButton.appendChild(stopTimer);
     timerButton.appendChild(resetTimer);
+
+    //Adding functionality to buttons
+    startTimer.addEventListener('click',startTimerFun);
+    stopTimer.addEventListener('click',stopTimerFun);
+    resetTimer.addEventListener('click',resetTimerFun);
 }
 
 //Calling to start
