@@ -16,8 +16,6 @@
 */
 
 let count = 0; //To keep track of count
-// const decrementButton = document.getElementById("decrement"); //To get the increment button
-// const incrementButton = document.getElementById("increment"); //To get the decrement button
 function incrementCount(){
     let countValue = document.getElementById("countValue"); //For accessing the countValue
 
@@ -60,54 +58,6 @@ function updateCount(){
     * Then append that element using appendChild Method
     * Add the counterContainer to the body
 */
-
-//Created during the tutorials
-// const createCounter = () =>{
-//     // <button></button>
-//     const incrementButton = document.createElement('button');
-//     const decrementButton = document.createElement('button');
-
-//     //adding some id's and classes to the button
-//     incrementButton.id = "increment";
-//     decrementButton.id = "decrement";
-
-//     //Adding Symbols to the buttons
-//     incrementButton.innerText = "+";
-//     decrementButton.innerText = "-";
-
-//     //Adding this to DOM 
-//     // Selecting counterContainer 
-//     // Return first Selection
-//     const counterContainer = document.querySelector('.counterContainer');
-//     counterContainer.appendChild(incrementButton);
-//     counterContainer.appendChild(decrementButton);
-
-//     //Adding Event Listeners
-//     incrementButton.onclick = incrementCount;
-//     decrementButton.addEventListener('click',decrementCount);
-// }
-
-
-
-//Creating the entire counter from scratch
-/*
-<div class="counterContainer">
-    <h1 class="counterHeading">Counter</h1>
-    <p class="" id="countValue">count : 0</p>
-    <!-- <button id="increment" >+</button>
-    <button id="decrement" >-</button> -->
-</div>
-*/
-//Play around with the code.
-//Add some styling to the counter dom
-//Programmatically attach the styling to the element
-//Build a simple timer
-// 3 Buttons -- start -- Number of seconds increase
-// pause -- stops the number of second
-// Reset -- It sets to zero
-//Style using css attach it to JS
-//Add a readMe file and in that put the live link
-
 //Adding the css as file to the JS element
 var link = document.createElement('link');
 link.setAttribute('rel', 'stylesheet');
@@ -151,7 +101,3 @@ const createCounterFromScratch=()=>{
     //document.body.appendChild(root);
     return counterContainer;
 }
-// createCounterFromScratch();
-
-
-
