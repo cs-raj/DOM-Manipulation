@@ -24,28 +24,36 @@ const root = document.createElement('div');
 root.classList.add('root');
 //root.appendChild(homeClockContainer);
 const timerCheckFun = () =>{
-    let tr = document.querySelector('.counterContainer');
-    console.log(tr);
-    if(tr!==null)
+    let counterCheck = document.querySelector('.counterContainer');
+    let timerCheck = document.querySelector('.timerContainer');
+    let rootCount = document.querySelector('.root');
+    console.log(counterCheck);
+    if(counterCheck!==null)
     {
-        root.removeChild(tr);
+        document.body.removeChild(rootCount);
+        root.removeChild(counterCheck);
     }
-
-    root.appendChild(timer());
-    console.log("Timer is Checked");
+    if(timerCheck===null)
+    {
+        let timer_ = timer();
+        root.appendChild(timer_);
+    }
 }
 
 const counterCheckFun = () =>{
-    let tr = document.querySelector('.timerContainer');
-    console.log(tr);
-    if(tr!==null)
+    let timerCheck = document.querySelector('.timerContainer');
+    let counterCheck = document.querySelector('.counterContainer');
+    let rootCount = document.querySelector('.root');
+    console.log(document.querySelector('.root').childElementCount);
+    if(timerCheck!==null)
     {
-        root.removeChild(tr);
+        //document.body.removeChild(rootCount);
+        root.removeChild(timerCheck);
     }
-
-    root.appendChild(createCounterFromScratch());
-    console.log("Timer is Checked");
-    console.log("Counter is Checked");
+    if(counterCheck===null)
+    {
+        root.appendChild(createCounterFromScratch());
+    }
 }
 const homeClock = () =>{
     //Creating the element
@@ -94,14 +102,8 @@ const homeClock = () =>{
     counterButtonContainer.appendChild(counterLabel);
     buttonGroup.appendChild(counterButtonContainer);
     buttonGroup.appendChild(timerButtonContainer);
-    // buttonGroup.appendChild(timerButton);
-    // buttonGroup.appendChild(timerLabel);
-    // buttonGroup.appendChild(counterButton);
-    // buttonGroup.appendChild(counterLabel);
-    // root.appendChild(homeClockContainer);
-    timerButton.addEventListener('click',timerCheckFun,{once:true});
-    counterButton.addEventListener('click',counterCheckFun,{once:true});
-    // root.removeChild(homeClockContainer);
+    timerButton.addEventListener('click',timerCheckFun);
+    counterButton.addEventListener('click',counterCheckFun);
     return homeClockContainer;
 }
 console.log(homeClock());

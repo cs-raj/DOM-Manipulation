@@ -148,7 +148,7 @@ const createCounterFromScratch=()=>{
     const root = document.createElement('div');
     root.id = 'root';
     //root.appendChild(counterContainer);//Appending container to root
-    document.body.appendChild(root);
+    //document.body.appendChild(root);
     return counterContainer;
 }
 // createCounterFromScratch();

@@ -23,39 +23,73 @@ head.appendChild(link);
 
 let second = 0;
 let minute = 0;
+let minuteSecondtens = 0;
 let intervalId = 0; // This will store setInterval Id used to stop the timer
 //Getting the id of the element to be updated
-
+const timerContainer = document.createElement('div'); //To access the buttons of the element
 //Start timer function
 function tc(){
     const timerClock = document.querySelector('.timerClock');
     console.log(timerClock);
-    second = second + 1;
-    timerClock.innerText = `Timer : ${minute} : ${second}`;
-    if(second%60===0){
-        second = 0;
-        minute = minute + 1;
-        timerClock.innerText = `Timer : ${minute} : ${second}`;
+
+    if(second<10){
+        second = second + 1;
+        console.log("if")
+        if(minute>=10){
+            timerClock.innerText = `Timer : ${minute} : ${minuteSecondtens}${second}`;
+
+        }
+        else{
+            timerClock.innerText = `Timer : ${minuteSecondtens}${minute} : ${minuteSecondtens}${second}`;
+        }
+    }
+    if(second>=10){
+        console.log("elififelse");
+        second = second + 1;
+        if(second===60){
+            second=0;
+            minute = minute + 1;
+            if(minute>=10){
+                timerClock.innerText = `Timer : ${minute} : ${minuteSecondtens}${second}`; 
+            }
+            else{
+                timerClock.innerText = `Timer : ${minuteSecondtens}${minute} : ${minuteSecondtens}${second}`;
+                console.log("elififelse");
+            }
+        }
+        else{
+            if(minute>=10){
+                timerClock.innerText = `Timer : ${minute} : ${second}`;
+            }
+            else{
+                timerClock.innerText = `Timer : ${minuteSecondtens}${minute} : ${second}`;
+            }
+        }
     }
 }
 
 const startTimerFun = () =>{
+    
+    
     intervalId = setInterval(tc,1000);
 }
 
 //To Stop the timer
 const stopTimerFun = () =>{
+    document.getElementById('start').addEventListener('click',startTimerFun,{once:true});
+    console.log(document.getElementById('start'));
     clearInterval(intervalId);
 }
 
 //Resetting the Timer
 const resetTimerFun = () =>{
+    document.getElementById('start').addEventListener('click',startTimerFun,{once:true});
     clearInterval(intervalId); //Stopping the timer
     //Setting it to zero
     second = 0;
     minute = 0;
     const timerClock = document.querySelector('.timerClock');
-    timerClock.innerText = `Timer : ${minute} : ${second}`;
+    timerClock.innerText = `Timer : ${minuteSecondtens}${minute} : ${minuteSecondtens}${second}`;
 }
 /*
     * Creating the elements
@@ -78,7 +112,7 @@ const resetTimerFun = () =>{
 */
 const timer = () =>{
     //const root = document.createElement('div');
-    const timerContainer = document.createElement('div');
+
     const timerHeader = document.createElement('div');
     const timerClock = document.createElement('div');
     const timerButton = document.createElement('div');
@@ -101,7 +135,7 @@ const timer = () =>{
     startTimer.innerText = "Start";
     stopTimer.innerText = "Stop";
     resetTimer.innerText = "Reset";
-    timerClock.innerText = `Timer : ${minute} : ${second}`;
+    timerClock.innerText = `Timer : ${minuteSecondtens}${minute} : ${minuteSecondtens}${second}`;
 
     //Adding element to one another
     document.body.appendChild(root);

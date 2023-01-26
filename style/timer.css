@@ -9,6 +9,7 @@ body{
     /* border: 1px solid black; */
 }
 .timerContainer{
+    background: linear-gradient(white,lightskyblue);
     border: 1px solid green;
     margin: 20px;
     padding: 10px;
