@@ -13,6 +13,13 @@
  * Counter Button
  * Submit Button
 */
+//Adding the CSS
+var link = document.createElement('link');
+link.setAttribute('rel', 'stylesheet');
+link.setAttribute('href', './style/style.css');
+document.head.appendChild(link);
+
+
 const root = document.createElement('div');
 root.classList.add('root');
 //root.appendChild(homeClockContainer);
@@ -46,11 +53,14 @@ const homeClock = () =>{
     const homeClockContainer = document.createElement('div');
     const homeForm = document.createElement('form');
     const buttonGroup = document.createElement('div');
+    const timerButtonContainer = document.createElement('div');
+    const counterButtonContainer = document.createElement('div');    
     const timerButton = document.createElement('input');
     const counterButton = document.createElement('input');
     const timerLabel = document.createElement('label');
     const counterLabel = document.createElement('label');
     //Assigning Id and classes
+
     timerButton.id = 'timer';
     counterButton.id = 'counter';
     timerButton.type = 'radio';
@@ -63,6 +73,8 @@ const homeClock = () =>{
     counterLabel.for = 'counter';
     timerLabel.innerText = "Timer";
     counterLabel.innerText = "Counter";
+    timerButtonContainer.classList.add('timerButtonContainer');
+    counterButtonContainer.classList.add('counterButtonContainer');
     buttonGroup.classList.add('buttonGroup'); //To house the buttons
     homeForm.name = 'switchForm';
     homeForm.action = '';
@@ -74,10 +86,18 @@ const homeClock = () =>{
     document.body.appendChild(root);
     homeClockContainer.appendChild(homeForm);
     homeForm.appendChild(buttonGroup);
-    buttonGroup.appendChild(timerButton);
-    buttonGroup.appendChild(timerLabel);
-    buttonGroup.appendChild(counterButton);
-    buttonGroup.appendChild(counterLabel);
+
+    timerButtonContainer.appendChild(timerButton);
+    timerButtonContainer.appendChild(timerLabel);
+
+    counterButtonContainer.appendChild(counterButton);
+    counterButtonContainer.appendChild(counterLabel);
+    buttonGroup.appendChild(counterButtonContainer);
+    buttonGroup.appendChild(timerButtonContainer);
+    // buttonGroup.appendChild(timerButton);
+    // buttonGroup.appendChild(timerLabel);
+    // buttonGroup.appendChild(counterButton);
+    // buttonGroup.appendChild(counterLabel);
     // root.appendChild(homeClockContainer);
     timerButton.addEventListener('click',timerCheckFun,{once:true});
     counterButton.addEventListener('click',counterCheckFun,{once:true});
