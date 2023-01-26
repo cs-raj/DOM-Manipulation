@@ -69,8 +69,6 @@ function tc(){
 }
 
 const startTimerFun = () =>{
-    
-    
     intervalId = setInterval(tc,1000);
 }
 

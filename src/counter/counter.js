@@ -63,6 +63,7 @@ var link = document.createElement('link');
 link.setAttribute('rel', 'stylesheet');
 link.setAttribute('href', './style/counter.css');
 document.head.appendChild(link);
+
 const createCounterFromScratch=()=>{
     //Creating the elements of the counter
     const counterContainer = document.createElement('div');
