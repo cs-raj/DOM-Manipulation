@@ -11,14 +11,10 @@
 */
 
 //Addign the link for the css file
-var head = document.getElementsByTagName('HEAD')[0];
 var link = document.createElement('link');
-// set the attributes for link element
-link.rel = 'stylesheet';
-     
-link.type = 'text/css';
-link.href = './style/timer.css';
-head.appendChild(link);
+link.setAttribute('rel', 'stylesheet');
+link.setAttribute('href', './style/timer.css');
+document.head.appendChild(link);
 
 
 let second = 0;
