@@ -17,7 +17,7 @@ var link = document.createElement('link');
 link.rel = 'stylesheet';
      
 link.type = 'text/css';
-link.href = '../style/timer.css';
+link.href = './style/timer.css';
 head.appendChild(link);
 
 
